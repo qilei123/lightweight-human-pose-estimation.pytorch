@@ -125,7 +125,8 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
             if track:
                 cv2.putText(img, 'id: {}'.format(pose.id), (pose.bbox[0], pose.bbox[1] - 16),
                             cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255))
-        cv2.imshow('Lightweight Human Pose Estimation Python Demo', img)
+        #cv2.imshow('Lightweight Human Pose Estimation Python Demo', img)
+        cv2.imwrite("/data2/qilei_chen/DATA/ShanghaiAutograding/gangganpingheng_images_240/15_1/light_pose_test.jpg",img)
         key = cv2.waitKey(delay)
         if key == 27:  # esc
             return
