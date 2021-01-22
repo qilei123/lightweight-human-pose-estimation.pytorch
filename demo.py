@@ -34,7 +34,7 @@ class ImageReader(object):
         if img.size == 0:
             raise IOError('Image {} cannot be read'.format(self.file_names[self.idx]))
         self.idx = self.idx + 1
-        return img
+        return img,self.file_names[self.idx]
 
 
 class VideoReader(object):
@@ -96,7 +96,7 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
     num_keypoints = Pose.num_kpts
     previous_poses = []
     delay = 1
-    for img in image_provider:
+    for img,img_dir in image_provider:
         orig_img = img.copy()
         start_time=datetime.datetime.now()
         heatmaps, pafs, scale, pad = infer_fast(net, img, height_size, stride, upsample_ratio, cpu)
@@ -138,7 +138,7 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
                 cv2.putText(img, 'id: {}'.format(pose.id), (pose.bbox[0], pose.bbox[1] - 16),
                             cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255))
         #cv2.imshow('Lightweight Human Pose Estimation Python Demo', img)
-        cv2.imwrite("/data2/qilei_chen/DATA/ShanghaiAutograding/gangganpingheng_images_240/15_1/light_pose_test.jpg",img)
+        cv2.imwrite("/data2/qilei_chen/DATA/ShanghaiAutograding/gangganpingheng_images_240/15_1/right_light_pose/"+os.path.basename(img_dir),img)
         '''
         key = cv2.waitKey(delay)
         if key == 27:  # esc
