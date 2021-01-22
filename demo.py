@@ -34,8 +34,9 @@ class ImageReader(object):
         img = cv2.imread(self.file_names[self.idx], cv2.IMREAD_COLOR)
         if img.size == 0:
             raise IOError('Image {} cannot be read'.format(self.file_names[self.idx]))
-        #self.idx = self.idx + 1
-        return img,self.file_names[self.idx]
+        img_dir = self.file_names[self.idx]
+        self.idx = self.idx + 1
+        return img,img_dir
 
 
 class VideoReader(object):
