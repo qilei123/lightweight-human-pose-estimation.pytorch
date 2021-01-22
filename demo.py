@@ -165,7 +165,7 @@ if __name__ == '__main__':
     parser.add_argument('--smooth', type=int, default=1, help='smooth pose keypoints')
     args = parser.parse_args()
 
-    if args.video == '' and args.images == '':
+    if args.video == '' and args.images == '' and args.images_dir == '':
         raise ValueError('Either --video or --image has to be provided')
 
     net = PoseEstimationWithMobileNet()
