@@ -17,7 +17,7 @@ class ImageReader(object):
     def __init__(self, file_names):
         
         self.file_names = file_names
-        
+        print(file_names)
         if os.path.isdir(file_names):
             self.file_names = glob.glob(os.path.join(file_names,"*.jpg"))
         print(self.file_names)
