@@ -20,7 +20,7 @@ class ImageReader(object):
         
         if os.path.isdir(file_names):
             self.file_names = glob.glob(os.path.join(file_names,"*.jpg"))
-
+        print(self.file_names)
         self.max_idx = len(file_names)
 
     def __iter__(self):
