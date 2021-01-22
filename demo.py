@@ -173,6 +173,8 @@ if __name__ == '__main__':
     load_state(net, checkpoint)
 
     frame_provider = ImageReader(args.images)
+    if not args.images_dir=='':
+        frame_provider = ImageReader(args.images_dir)
     if args.video != '':
         frame_provider = VideoReader(args.video)
     else:
