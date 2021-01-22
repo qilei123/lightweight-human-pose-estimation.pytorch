@@ -9,11 +9,17 @@ from modules.keypoints import extract_keypoints, group_keypoints
 from modules.load_state import load_state
 from modules.pose import Pose, track_poses
 from val import normalize, pad_width
-
+import os
+import glob
 
 class ImageReader(object):
     def __init__(self, file_names):
+        
         self.file_names = file_names
+        
+        if os.path.isdir(file_names):
+            self.file_names = glob.glob(os.path.join(file_names,"*.jpg"))
+
         self.max_idx = len(file_names)
 
     def __iter__(self):
@@ -127,6 +133,7 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
                             cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255))
         #cv2.imshow('Lightweight Human Pose Estimation Python Demo', img)
         cv2.imwrite("/data2/qilei_chen/DATA/ShanghaiAutograding/gangganpingheng_images_240/15_1/light_pose_test.jpg",img)
+        '''
         key = cv2.waitKey(delay)
         if key == 27:  # esc
             return
@@ -135,7 +142,7 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
                 delay = 0
             else:
                 delay = 1
-
+        '''
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
