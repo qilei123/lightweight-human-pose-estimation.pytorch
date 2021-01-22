@@ -11,6 +11,7 @@ from modules.pose import Pose, track_poses
 from val import normalize, pad_width
 import os
 import glob
+import datetime
 
 class ImageReader(object):
     def __init__(self, file_names):
@@ -85,6 +86,7 @@ def infer_fast(net, img, net_input_height_size, stride, upsample_ratio, cpu,
 
 
 def run_demo(net, image_provider, height_size, cpu, track, smooth):
+    show_time = True
     net = net.eval()
     if not cpu:
         net = net.cuda()
@@ -96,8 +98,12 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
     delay = 1
     for img in image_provider:
         orig_img = img.copy()
+        start_time=datetime.datetime.now()
         heatmaps, pafs, scale, pad = infer_fast(net, img, height_size, stride, upsample_ratio, cpu)
-
+        end_time=datetime.datetime.now()
+        if show_time:
+            print("pose time:")
+            print((end_time-start_time).microseconds/1000)        
         total_keypoints_num = 0
         all_keypoints_by_type = []
         for kpt_idx in range(num_keypoints):  # 19th for bg
