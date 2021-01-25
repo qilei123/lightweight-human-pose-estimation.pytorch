@@ -93,7 +93,7 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
     net = net.eval()
     if not cpu:
         net = net.cuda()
-
+    print(track)
     stride = 8
     upsample_ratio = 4
     num_keypoints = Pose.num_kpts
@@ -134,6 +134,7 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
         for pose in current_poses:
             pose.draw(img)
         img = cv2.addWeighted(orig_img, 0.6, img, 0.4, 0)
+        
         for pose in current_poses:
             cv2.rectangle(img, (pose.bbox[0], pose.bbox[1]),
                           (pose.bbox[0] + pose.bbox[2], pose.bbox[1] + pose.bbox[3]), (0, 255, 0))
