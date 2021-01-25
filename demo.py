@@ -142,7 +142,9 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
                             cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255))
         #cv2.imshow('Lightweight Human Pose Estimation Python Demo', img)
         print(img_dir)
-        cv2.imwrite("/data2/qilei_chen/DATA/ShanghaiAutograding/gangganpingheng_images_240/15_1/right_light_pose/"+os.path.basename(img_dir),img)
+        img_save_dir = img_dir.replace("15_1","15_1_lightpose")
+        #cv2.imwrite("/data2/qilei_chen/DATA/ShanghaiAutograding/gangganpingheng_images_240/15_1/right_light_pose/"+os.path.basename(img_dir),img)
+        cv2.imwrite(img_save_dir,img)
         '''
         key = cv2.waitKey(delay)
         if key == 27:  # esc
