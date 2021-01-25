@@ -93,6 +93,7 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
     net = net.eval()
     if not cpu:
         net = net.cuda()
+    track = True
     print("track:"+str(track))
     stride = 8
     upsample_ratio = 4
