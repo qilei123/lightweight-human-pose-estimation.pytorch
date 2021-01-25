@@ -93,7 +93,7 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
     net = net.eval()
     if not cpu:
         net = net.cuda()
-    print(track)
+    print("track:"+str(track))
     stride = 8
     upsample_ratio = 4
     num_keypoints = Pose.num_kpts
