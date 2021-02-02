@@ -53,7 +53,7 @@ class PoseDetector(object):
         self.track = True
         self.stride = 8
         self.upsample_ratio = 4
-        self.height_size = 128
+        self.height_size = 256
         self.smooth = 1
         self.num_keypoints = Pose.num_kpts
 
@@ -374,5 +374,5 @@ if __name__ == "__main__":
     test_image = cv2.imread(image_path, cv2.IMREAD_COLOR)
     pose_detector = PoseDetector(model)
     #pose_detector.visualize_prediction(test_image)
-
+    
     candidate, subset = pose_detector(test_image)
