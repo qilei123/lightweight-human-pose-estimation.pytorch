@@ -104,10 +104,7 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
         orig_img = img.copy()
         start_time=datetime.datetime.now()
         heatmaps, pafs, scale, pad = infer_fast(net, img, height_size, stride, upsample_ratio, cpu)
-        end_time=datetime.datetime.now()
-        if show_time:
-            print("pose time:")
-            print((end_time-start_time).microseconds/1000)        
+     
         total_keypoints_num = 0
         all_keypoints_by_type = []
         for kpt_idx in range(num_keypoints):  # 19th for bg
@@ -128,7 +125,10 @@ def run_demo(net, image_provider, height_size, cpu, track, smooth):
                     pose_keypoints[kpt_id, 1] = int(all_keypoints[int(pose_entries[n][kpt_id]), 1])
             pose = Pose(pose_keypoints, pose_entries[n][18])
             current_poses.append(pose)
-
+        end_time=datetime.datetime.now()
+        if show_time:
+            print("pose time:")
+            print((end_time-start_time).microseconds/1000)   
         if track:
             track_poses(previous_poses, current_poses, smooth=smooth)
             previous_poses = current_poses
