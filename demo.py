@@ -236,7 +236,7 @@ def main1():
 def main2():
     light_body =  LightBody("models/checkpoint_iter_370000.pth")
     image = cv2.imread("/data2/qilei_chen/DATA/ShanghaiAutograding/gangganpingheng_images_240/15_1/right/23556.jpg")
-    for i in range(10):
+    for i in range(1):
         start_time=datetime.datetime.now()
         print(light_body(image))
         end_time=datetime.datetime.now()
