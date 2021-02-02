@@ -8,6 +8,7 @@ from modules.load_state import load_state
 from models.with_mobilenet import PoseEstimationWithMobileNet
 from modules.keypoints import extract_keypoints, group_keypoints
 
+import datetime
 
 def convert_to_coco_format(pose_entries, all_keypoints):
     coco_keypoints = []
@@ -108,8 +109,11 @@ class PoseDetector(object):
         peak_counter = 0
         thre1 = 0.1
         thre2 = 0.05
-
+        start_time=datetime.datetime.now()
         avg_heatmap, avg_paf = self.__inference(image)
+        end_time=datetime.datetime.now()
+        print("light pose time:")
+        print((end_time-start_time).microseconds/1000)
         for part in range(18):
             map_ori = avg_heatmap[:, :, part]
             one_heatmap = gaussian_filter(map_ori, sigma=3)
@@ -285,5 +289,6 @@ if __name__ == "__main__":
     model = '/data2/xinzi/pose_estimation/checkpoints/checkpoint_iter_370000.pth'
     test_image = cv2.imread(image_path, cv2.IMREAD_COLOR)
     pose_detector = PoseDetector(model)
-    pose_detector.visilize_prediction(test_image)
     candidate, subset = pose_detector(test_image)
+    pose_detector.visilize_prediction(test_image)
+    
