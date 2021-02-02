@@ -167,7 +167,7 @@ class LightBody(object):
         self.model = self.model.eval()
         self.model = self.model.cuda()
 
-    def __call__(self, img,height_size = 256):
+    def __call__(self, img,height_size = 540):
         stride = 8
         upsample_ratio = 4
         num_keypoints = Pose.num_kpts
