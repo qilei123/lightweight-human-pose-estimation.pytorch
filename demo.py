@@ -207,7 +207,7 @@ def main1():
                        This is just for quick results preview.
                        Please, consider c++ demo for the best performance.''')
     parser.add_argument('--checkpoint-path', type=str, required=True, help='path to the checkpoint')
-    parser.add_argument('--height-size', type=int, default=400, help='network input layer height size')
+    parser.add_argument('--height-size', type=int, default=256, help='network input layer height size')
     parser.add_argument('--video', type=str, default='', help='path to video file or camera id')
     parser.add_argument('--images', nargs='+', default='', help='path to input image(s)')
     parser.add_argument('--images_dir', default='', help='folderpath to input image(s)')
@@ -239,7 +239,7 @@ def main2():
     for i in range(10):
         image = cv2.imread("/data2/qilei_chen/DATA/ShanghaiAutograding/gangganpingheng_images_240/15_1/right/23556.jpg")
         start_time=datetime.datetime.now()
-        print(light_body(image))
+        print(light_body(image,540))
         end_time=datetime.datetime.now()
         print((end_time-start_time).microseconds/1000)
 
