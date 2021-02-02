@@ -243,4 +243,4 @@ def main2():
         print((end_time-start_time).microseconds/1000)
 
 if __name__ == '__main__':
-    main1()
+    main2()
